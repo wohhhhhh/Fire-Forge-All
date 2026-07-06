@@ -1,0 +1,9 @@
+{
+  "modid": "masssmith",
+  "name": "Mass Smith",
+  "author_list": ["WH2605152"],
+  "description": "Changes the campfire Smith option so it upgrades every upgradable card in the player's master deck.",
+  "version": "1.0.0",
+  "sts_version": "12-22-2020",
+  "mts_version": "3.30.0"
+}

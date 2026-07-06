@@ -1,0 +1,6 @@
+target/
+out/
+*.iml
+
+lib/*.jar
+!lib/README.md
