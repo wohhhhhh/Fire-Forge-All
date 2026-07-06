@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>masssmith</groupId>
-    <artifactId>masssmith</artifactId>
+    <groupId>fireforgeall</groupId>
+    <artifactId>fire-forge-all</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Mass Smith</name>
+    <name>Fire-Forge-All</name>
     <description>Upgrade every upgradable card when using the campfire Smith option.</description>
 
     <properties>
@@ -43,7 +43,7 @@
     </dependencies>
 
     <build>
-        <finalName>masssmith-${project.version}</finalName>
+        <finalName>fire-forge-all-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

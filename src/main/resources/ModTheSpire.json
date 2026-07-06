@@ -1,7 +1,7 @@
 {
-  "modid": "masssmith",
-  "name": "Mass Smith",
-  "author_list": ["WH2605152"],
+  "modid": "fireforgeall",
+  "name": "Fire-Forge-All",
+  "author_list": ["wohhhhhh"],
   "description": "Changes the campfire Smith option so it upgrades every upgradable card in the player's master deck.",
   "version": "1.0.0",
   "sts_version": "12-22-2020",

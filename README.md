@@ -1,23 +1,23 @@
-# Mass Smith
+# Fire-Forge-All
 
-Mass Smith is a small Slay the Spire 1 mod that changes the campfire Smith option.
+`Fire-Forge-All` 是一个《杀戮尖塔》一代 Mod。
 
-Instead of opening the normal single-card upgrade screen, Smith immediately upgrades every upgradable card in the player's master deck.
+它会修改火堆里的“锻造”功能：玩家点击“锻造”后，不再进入原版的单卡选择界面，而是直接升级牌组里所有可以升级的卡牌。
 
-## Features
+## 功能
 
-- Replaces the campfire Smith action with a mass upgrade.
-- Upgrades every card where `card.canUpgrade()` returns true.
-- Runs bottled-card upgrade checks after upgrading each card.
-- Plays the normal card upgrade sound.
-- Shows an upgrade shine effect.
-- Briefly previews up to 10 upgraded cards.
+- 复用原版火堆的“锻造”按钮，不新增额外 UI。
+- 点击“锻造”后，一次性升级所有 `card.canUpgrade()` 的卡牌。
+- 每张牌升级后都会执行瓶装牌升级检查。
+- 播放升级音效。
+- 显示升级闪光效果。
+- 最多短暂展示 10 张升级后的卡牌作为反馈。
 
-## Requirements
+## 依赖
 
-This project is intentionally set up with local jar dependencies, because Slay the Spire's game jar is not a public Maven dependency.
+这个项目使用本地 jar 依赖，因为《杀戮尖塔》的游戏本体 jar 不是公开 Maven 依赖。
 
-Put these files in `lib/` before building:
+构建前需要把下面三个文件放到 `lib/` 目录：
 
 ```text
 lib/
@@ -26,72 +26,72 @@ lib/
   BaseMod.jar
 ```
 
-Where to get them:
+来源说明：
 
-- `desktop-1.0.jar`: from your own Slay the Spire install directory.
-- `ModTheSpire.jar`: from the ModTheSpire release page.
-- `BaseMod.jar`: from the BaseMod release page or Steam Workshop install.
+- `desktop-1.0.jar`：来自你自己的《杀戮尖塔》游戏安装目录。
+- `ModTheSpire.jar`：来自 ModTheSpire 的 Release。
+- `BaseMod.jar`：来自 BaseMod 的 Release 或 Steam Workshop 安装目录。
 
-## Build
+## 构建
 
-This project uses Maven.
+项目使用 Maven。
 
-On this machine, Maven is available at:
+当前机器上的 Maven 路径是：
 
 ```powershell
 D:\apache-maven-3.9.9\bin\mvn.cmd
 ```
 
-Build the mod:
+构建命令：
 
 ```powershell
 cd D:\MassSmith
 D:\apache-maven-3.9.9\bin\mvn.cmd package
 ```
 
-The built jar will be created at:
+构建成功后，Mod jar 会生成在：
 
 ```text
-target/masssmith-1.0.0.jar
+target/fire-forge-all-1.0.0.jar
 ```
 
-## Install
+## 安装
 
-Copy the built jar into your Slay the Spire `mods` directory:
+把构建产物复制到《杀戮尖塔》的 `mods` 目录：
 
 ```powershell
-Copy-Item D:\MassSmith\target\masssmith-1.0.0.jar "D:\SteamLibrary\steamapps\common\SlayTheSpire\mods\"
+Copy-Item D:\MassSmith\target\fire-forge-all-1.0.0.jar "D:\SteamLibrary\steamapps\common\SlayTheSpire\mods\"
 ```
 
-Then launch the game through ModTheSpire and enable `Mass Smith`.
+然后通过 ModTheSpire 启动游戏，并启用 `Fire-Forge-All`。
 
-## How It Works
+## 实现方式
 
-The mod patches:
+Mod patch 了原版方法：
 
 ```java
 com.megacrit.cardcrawl.ui.campfire.SmithOption.useOption()
 ```
 
-When the player clicks Smith at a campfire, the patch skips the original single-card selection flow and adds a custom `MassSmithEffect`.
+当玩家在火堆点击“锻造”时，patch 会跳过原版单卡选择流程，改为加入一个自定义的 `MassSmithEffect`。
 
-The effect loops through:
+这个 effect 会遍历：
 
 ```java
 AbstractDungeon.player.masterDeck.group
 ```
 
-For every upgradable card, it calls:
+对每张可以升级的牌执行：
 
 ```java
 card.upgrade();
 AbstractDungeon.player.bottledCardUpgradeCheck(card);
 ```
 
-## Project Structure
+## 项目结构
 
 ```text
-MassSmith/
+Fire-Forge-All/
   pom.xml
   lib/
     README.md
@@ -107,9 +107,9 @@ MassSmith/
         ModTheSpire.json
 ```
 
-## Notes
+## 注意
 
-- The mod does not add a new campfire button.
-- The original Smith button is reused.
-- If there are no upgradable cards, the Smith action simply finishes without upgrading anything.
-- The project will not compile until the three required jar files are placed in `lib/`.
+- 这个 Mod 不会新增火堆按钮。
+- 原版“锻造”按钮会变成“升级全部可升级卡牌”。
+- 如果牌组里没有可升级卡牌，锻造操作会直接结束。
+- 缺少 `lib/` 里的三个依赖 jar 时，项目无法编译。
